@@ -92,12 +92,6 @@ var ControllerContractAddress common.Address
 var TokenWhitelist *bindings.TokenWhitelist
 var TokenWhitelistAddress common.Address
 
-var OraclizeResolver *mocks.OraclizeAddrResolver
-var OraclizeResolverAddress common.Address
-
-var OraclizeConnector *mocks.OraclizeConnector
-var OraclizeConnectorAddress common.Address
-
 var Oracle *bindings.Oracle
 var OracleAddress common.Address
 
@@ -382,26 +376,6 @@ func InitializeBackend() error {
 		}
 	}
 
-	OraclizeConnectorAddress, tx, OraclizeConnector, err = mocks.DeployOraclizeConnector(BankAccount.TransactOpts(), Backend, OraclizeConnectorOwner.Address())
-	if err != nil {
-		return err
-	}
-	Backend.Commit()
-	err = verifyTransaction(tx)
-	if err != nil {
-		return errors.Wrap(err, "deploying Oraclize connector")
-	}
-
-	OraclizeResolverAddress, tx, OraclizeResolver, err = mocks.DeployOraclizeAddrResolver(BankAccount.TransactOpts(), Backend, OraclizeConnectorAddress)
-	if err != nil {
-		return err
-	}
-	Backend.Commit()
-	err = verifyTransaction(tx)
-	if err != nil {
-		return errors.Wrap(err, "deploying Oraclize address resolver")
-	}
-
 	TokenWhitelistAddress, tx, TokenWhitelist, err = bindings.DeployTokenWhitelist(BankAccount.TransactOpts(), Backend, ENSRegistryAddress, OracleName, ControllerName, StablecoinAddress)
 	if err != nil {
 		return err
@@ -436,7 +410,7 @@ func InitializeBackend() error {
 	}
 
 	// Deploy the Token oracle contract.
-	OracleAddress, tx, Oracle, err = bindings.DeployOracle(BankAccount.TransactOpts(), Backend, OraclizeResolverAddress, ENSRegistryAddress, ControllerName, TokenWhitelistName)
+	OracleAddress, tx, Oracle, err = bindings.DeployOracle(BankAccount.TransactOpts(), Backend, ENSRegistryAddress, ControllerName, TokenWhitelistName)
 	if err != nil {
 		return err
 	}

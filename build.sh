@@ -23,7 +23,6 @@ contract_sources=(
   'mocks/burnerToken'
   'mocks/nonCompliantToken'
   'mocks/base64Exporter'
-  'mocks/oraclize'
   'mocks/bytesUtilsExporter'
   'mocks/isValidSignatureExporter'
   'mocks/parseIntScientificExporter'
@@ -67,8 +66,6 @@ contracts=(
   "mocks/burnerToken/BurnerToken mocks/burnerToken.go BurnerToken mocks"
   "mocks/nonCompliantToken/NonCompliantToken mocks/nonCompliantToken.go NonCompliantToken mocks"
   "mocks/base64Exporter/Base64Exporter mocks/base64Exporter.go Base64Exporter mocks"
-  "mocks/oraclize/OraclizeConnector mocks/oraclizeConnector.go OraclizeConnector mocks"
-  "mocks/oraclize/OraclizeAddrResolver mocks/oraclizeAddrResolver.go OraclizeAddrResolver mocks"
   "mocks/bytesUtilsExporter/BytesUtilsExporter mocks/bytesUtilsExporter.go BytesUtilsExporter mocks"
   "mocks/isValidSignatureExporter/IsValidSignatureExporter mocks/isValidSignatureExporter.go IsValidSignatureExporter mocks"
   "mocks/parseIntScientificExporter/ParseIntScientificExporter mocks/parseIntScientificExporter.go ParseIntScientificExporter mocks"
